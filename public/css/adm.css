@@ -1,0 +1,54 @@
+.bg-adm {
+    background-color: #6b7a88;
+}
+
+.main-adm {
+    margin-left: 200px;
+}
+
+.side-adm {
+    position: fixed;
+    left:0;
+    background-color: #dbe3ea;
+    width: 200px;
+    height: 100%;
+}
+
+.side-adm a{
+    height: 50px;
+    line-height: 50px;
+    text-align: left;
+    padding-left: 15px;   
+}
+
+
+.side-button-adm {
+    color:#56626f !important;
+    text-decoration: none;
+    font-weight: bold;  
+    text-decoration: none;
+    width: 200px;
+    display: block;
+    background-color: transparent;
+    transition: 0.2s;
+}
+
+.side-button-adm:hover {
+    background-color: #d0d8e0;
+}
+
+.back-home:hover {
+    background-color: #82909c;
+}
+
+.back-home {
+    display: block;
+    text-decoration: none;
+    background-color: #8998a5;
+    height: 55px !important;
+    line-height: 55px !important;
+    color:#f8f9fa !important;
+    font-weight: bold;
+    transition: 0.2s;
+    padding-left: 50px !important;
+}

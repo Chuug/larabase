@@ -1,0 +1,236 @@
+html {
+    height: 100%;
+}
+
+body {
+    position: relative;
+    min-height: 100%;
+    padding-bottom: 100px;
+}
+
+footer {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    height: 30px;
+    line-height: 30px;
+}
+
+* {
+    outline: none !important;
+}
+
+.topbar {
+    height: 70px;
+}
+
+.topbar-right {
+    float:right;
+}
+
+.topbar-left {
+    float: left;
+    line-height: 70px;
+}
+
+.topbar-logo {
+    height: 35px;
+}
+
+/* ----------------------------- Navigation ----------------------------- */
+
+#navigation {
+    display: inline-block;
+}
+
+#navigation a {
+    padding: 0 20px;
+    text-decoration: none;
+    color:#f8f9fa;
+    font-weight: 500;
+    display: inline-block;
+    margin-left: -4px;
+    background-color: #343a40;
+    transition: 0.2s;
+}
+
+#navigation a:hover{
+    background-color: #2d3238;
+}
+
+#navigation.responsive {
+    display: none;
+    position: absolute;
+    top:70px;
+    left:-50px;
+    width:100%;
+}
+
+#navigation.responsive a{
+    margin-left: 50px;
+    display: block;
+    width: 100%;
+}
+
+.icon-responsive {
+    margin-right: 80px;
+    margin-top: 18px;
+    display: none;
+    cursor: pointer;
+    padding:10px;
+    border-radius: 15%;
+    background-color: #2d3238;
+    transition: 0.3s;
+    float:left;
+}
+
+.icon-responsive:hover {
+    background-color: #212529;
+}
+
+@media (max-width:1000px) {
+    .icon-responsive-connected {
+        margin-right: 80px;
+    }
+    
+    .icon-responsive-disconnected {
+        margin-right: 15px;
+    }
+}
+
+/* ---------------------------- nav-response end ---------------------------- */
+
+.navbar {
+    height: 70px;
+}
+
+.nav-disconnected {
+    line-height: 70px;
+    float:right;
+}
+
+.nav-connected {
+    float:right;
+}
+
+.nav-avatar {
+    border: 3px solid #f8f9fa;
+    cursor: pointer;
+    margin-right: 20px;
+    transition: transform 0.2s;
+}
+
+.nav-avatar:hover {
+    transform: scale(1.2);
+}
+
+.avatar-sized {
+    width: 44px;
+    height: 44px;   
+}
+
+.avatar-settings {
+    width: 96px;
+    height: 96px;
+}
+
+.avatar-side {
+    border: 5px solid #444b52;
+    width: 75px;
+    width: 75px;
+}
+
+.avatar-shadow {
+    -webkit-box-shadow: 0px 0px 5px -1px rgba(0,0,0,0.75);
+    -moz-box-shadow: 0px 0px 5px -1px rgba(0,0,0,0.75);
+    box-shadow: 0px 0px 5px -1px rgba(0,0,0,0.75);
+}
+
+.toggle-sidebar {
+    position: absolute;
+    right:0;
+    top:0;
+    background: none;
+	color: inherit;
+	border: none;
+	padding: 0;
+	font: inherit;
+	cursor: pointer;
+    outline: inherit;
+    padding:13px;
+}
+
+
+/* --------------------------------- Toasts --------------------------------- */
+
+.toast-container{
+    position: absolute;
+    right: 15px;
+    top: 85px;
+}
+
+/* -------------------------------- Side Menu ------------------------------- */
+
+/* The side navigation menu */
+.sidenav {
+    height: 100%; /* 100% Full-height */
+    width: 0; /* 0 width - change this with JavaScript */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Stay on top */
+    top: 0; /* Stay at the top */
+    right: 0;
+    overflow-x: hidden; /* Disable horizontal scroll */
+    transition: 0.5s; /* 0.5 second transition effect to slide in the sidenav */
+  }
+
+.side-disconnect a{
+    height: 70px;
+    position: fixed;
+    bottom:0;
+    line-height: 70px;
+    text-align: center;
+    box-shadow: none;
+    background-color: #2d3238;
+}
+
+.side-disconnect a:hover{
+    background-color: #212529;
+}
+
+.side-menu a{
+    height: 50px;
+    line-height: 50px;
+    text-align: left;
+    padding-left: 35px;   
+}
+
+.side-button {
+    color:#f8f9fa !important;
+    text-decoration: none;
+    font-weight: bold;  
+    text-decoration: none;
+    width: 225px;
+    display: block;
+    background-color: transparent;
+    -webkit-box-shadow: 0px 0px 0px 1px rgba(66,74,80,1);
+    -moz-box-shadow: 0px 0px 0px 1px rgba(66,74,80,1);
+    box-shadow: 0px 0px 0px 1px rgba(66,74,80,1);
+    transition: 0.2s;
+}
+
+.side-button:hover {
+    color:#f8f9fa !important;
+    background-color: #2d3238;
+}
+
+.btn-adm {
+    color:#94caff !important;
+}
+
+  /* On smaller screens, where height is less than 450px, change the style of the sidenav (less padding and a smaller font size) */
+  @media screen and (max-height: 450px) {
+    .sidenav {padding-top: 15px;}
+    .sidenav a {font-size: 18px;}
+}
