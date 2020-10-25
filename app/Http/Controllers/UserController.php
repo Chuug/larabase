@@ -25,6 +25,7 @@ class UserController extends Controller
 
     public function updateProfile(Request $request)
     {
+        //Commentaire
         $this->authorize('updateProfile', User::class);
 
         $rules = [
