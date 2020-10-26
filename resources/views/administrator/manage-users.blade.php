@@ -3,8 +3,9 @@
 @section('content')
     <div class="row m-4">
         <div class="table-responsive">
-            <table class="table table-light">
-                <thead>
+            <table class="table table-light table-striped table-borderless table-hover">
+                <thead class="table-dark">
+                    <th></th>
                     <th style="width: 20%">Pseudonyme</th>
                     <th style="width: 30%">Email</th>
                     <th style="width: 20%">Dernière connexion</th>
@@ -13,12 +14,20 @@
                 <tbody>
                     @foreach ($users as $user)
                         <tr>
-                            <td id="username-{{ $user->id }}">{{ $user->name }}</td>
+                            <td>@if ($user->isAdmin)<i class="fas fa-crown text-info"></i>@endif</td>
+                            <td>
+                                <span id="username-{{ $user->id }}">{{ $user->name }}</span>
+                            </td>
                             <td>{{ $user->email }}</td>
                             <td>Last con</td>
-                            <td class="text-right">
+                            <td class="text-right">        
+                                <span data-toggle="tooltip" data-placement="top" title="@if($user->isAdmin) Retrograder utilisateur @else Promouvoir administrateur @endif">
+                                    <button class="btn btn-sm @if(!$user->isAdmin) btn-outline-info @else btn-info @endif" id="{{ $user->id }}" data-toggle="modal" data-target="#confirmModal">
+                                        <i class="fas fa-crown"></i>
+                                    </button>
+                                </span>
                                 <span data-toggle="tooltip" data-placement="top" title="Supprimer l'utilisateur">
-                                    <button type="button" class="btn btn-sm btn-danger delete-user" id="{{ $user->id }}" data-toggle="modal" data-target="#removeUser">
+                                    <button type="button" class="btn btn-sm btn-danger delete-user" id="{{ $user->id }}" data-toggle="modal" data-target="#confirmModal">
                                         <i class="fas fa-trash"></i>
                                     </button>
                                 </span>
@@ -32,7 +41,7 @@
 
 
     <!-- Modal -->
-    <div class="modal fade" id="removeUser" tabindex="-1" aria-hidden="true">
+    <div class="modal fade" id="confirmModal" tabindex="-1" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">

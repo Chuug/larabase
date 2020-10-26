@@ -30,6 +30,8 @@ Route::patch('/user/update/avatar', [UserController::class, 'updateAvatar'])->na
 
 /* ------------------------------ Administrator ----------------------------- */
 
-Route::get('/adm', [AdministratorController::class, 'index'])->name('administrator.index');
-Route::get('/adm/manage-users', [AdministratorController::class, 'manageUsers'])->name('administrator.users.manage');
-Route::delete('/adm/delete-user/{id?}', [AdministratorController::class, 'deleteUser'])->name('administrator.users.delete');
+Route::middleware('can:administration')->group(function(){
+    Route::get('/adm', [AdministratorController::class, 'index'])->name('administrator.index');
+    Route::get('/adm/manage-users', [AdministratorController::class, 'manageUsers'])->name('administrator.users.manage');
+    Route::delete('/adm/delete-user/{id?}', [AdministratorController::class, 'deleteUser'])->name('administrator.users.delete');
+});

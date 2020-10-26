@@ -24,6 +24,8 @@ function showMenuTooltip(width) {
 let deleteBtn = document.querySelectorAll('.delete-user');
 let checkUser = document.getElementById('checkUser');
 
+let btn = document.querySelectorAll('user-manage-btn');
+
 deleteBtn.forEach(function(btn){
     btn.addEventListener('click',function(){
         let id = btn.getAttribute('id');
@@ -46,7 +48,7 @@ deleteBtn.forEach(function(btn){
     });
 });
 
-var modalRemoveUser = document.getElementById('removeUser');
+var modalRemoveUser = document.getElementById('confirmModal');
 modalRemoveUser.addEventListener('hide.bs.modal', function(){
     checkUser.classList.remove('is-invalid');
     checkUser.value = '';

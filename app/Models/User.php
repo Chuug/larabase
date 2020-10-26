@@ -2,10 +2,10 @@
 
 namespace App\Models;
 
+use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-use Illuminate\Notifications\Notifiable;
 
 class User extends Authenticatable
 {
@@ -40,4 +40,16 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    protected $appends = [
+        'example'
+    ];
+
+    public function getIsAdminAttribute() {
+        return $this->attributes['role'] == env('ROLE_ADMIN', 3);
+    }
+
+    public function getExampleAttribute() {
+        return 'Hello example';
+    }
 }

@@ -14,8 +14,5 @@ class AdministratorPolicy
      *
      * @return void
      */
-    public function isAdmin(User $user) 
-    {
-        return true;
-    }
+
 }
