@@ -52,3 +52,22 @@
     transition: 0.2s;
     padding-left: 50px !important;
 }
+
+@media screen and (max-width: 576px) {
+    .side-adm {
+        width: 50px;
+    }
+
+    .main-adm {
+        margin-left: 50px;
+    }
+
+    .back-home {
+        padding-left: 0px !important;
+        text-align: center !important;
+    }
+
+    .side-button-adm {
+        width: 50px;
+    }
+}

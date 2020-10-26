@@ -66,4 +66,3 @@ document.addEventListener('click', function(){
         sideOpened = false;
     }
 });
-

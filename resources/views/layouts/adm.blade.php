@@ -16,11 +16,7 @@
   <body class="bg-light">
     @include('elements.navbaradm')
     @include('elements.sidebar')
-    <nav class="side-adm">
-        <a href="{{ route('home') }}" class="back-home"><i class="fas fa-arrow-left mr-1"></i> Retour</a>
-        <hr class="my-0">
-        <a href="{{ route('administrator.manage.users') }}" class="side-button-adm"><i class="fas fa-users mr-1"></i> Utilisateurs</a>  
-    </nav>
+    @include('elements.sideadm')
     <main class="main-adm">
         @include('elements/toasts')
         @yield('content')
@@ -31,5 +27,6 @@
     <script src="{{ asset('/js/boot.js') }}"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha2/js/bootstrap.bundle.min.js" integrity="sha384-BOsAfwzjNJHrJ8cZidOg56tcQWfp6y72vEJ8xQ9w6Quywb24iOsW913URv1IS4GD" crossorigin="anonymous"></script>
     <script src="{{ asset('/js/base.js') }}"></script>
+    <script src="{{ asset('/js/adm.js') }}"></script>
   </body>
 </html>

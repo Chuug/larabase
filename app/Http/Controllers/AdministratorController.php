@@ -8,6 +8,11 @@ use Illuminate\Support\Facades\DB;
 
 class AdministratorController extends Controller
 {
+
+    public function __construct(User $user) {
+        $this->authorize('isAdmin');
+    }
+
     public function index() 
     {
         $countUsers = DB::table('users')->count();
@@ -16,11 +21,16 @@ class AdministratorController extends Controller
         ]);
     }
 
-    public function manageUsers(){
+    public function manageUsers()
+    {
         $users = DB::table('users')->select('id','name','email')->get();
-        dd($users);
         return view('administrator.manage-users', [
             'users' => $users
         ]);
+    }
+
+    public function deleteUser($id = null)
+    {
+        dd($id);
     }
 }
