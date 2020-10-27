@@ -34,4 +34,5 @@ Route::middleware('can:administration')->group(function(){
     Route::get('/adm', [AdministratorController::class, 'index'])->name('administrator.index');
     Route::get('/adm/manage-users', [AdministratorController::class, 'manageUsers'])->name('administrator.users.manage');
     Route::delete('/adm/delete-user/{id?}', [AdministratorController::class, 'deleteUser'])->name('administrator.users.delete');
+    Route::patch('/adm/promote-user/{id?}', [AdministratorController::class, 'promoteUser'])->name('administrator.users.promote');
 });

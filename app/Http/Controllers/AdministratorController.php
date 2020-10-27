@@ -42,4 +42,9 @@ class AdministratorController extends Controller
             return redirect()->back()->with('error','Vous ne pouvez pas vous supprimer vous-même');
         }
     }
+
+    public function promoteUser($id = null)
+    {
+        dd($id);
+    }
 }
