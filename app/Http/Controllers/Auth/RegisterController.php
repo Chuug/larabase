@@ -2,12 +2,13 @@
 
 namespace App\Http\Controllers\Auth;
 
-use App\Http\Controllers\Controller;
-use App\Providers\RouteServiceProvider;
 use App\Models\User;
-use Illuminate\Foundation\Auth\RegistersUsers;
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
+use App\Providers\RouteServiceProvider;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Foundation\Auth\RegistersUsers;
+use LasseRafn\InitialAvatarGenerator\InitialAvatar;
 
 class RegisterController extends Controller
 {
@@ -64,10 +65,18 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        return User::create([
+        $user = User::create([
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
         ]);
+
+        //Set avatar
+        $avatar = new InitialAvatar();
+        $image = $avatar->name($user->name)->width(96)->height(96)->generate();
+        $image->save('storage/users/avatar/'.$user->id.'.png');
+
+        return $user;
     }
+    
 }

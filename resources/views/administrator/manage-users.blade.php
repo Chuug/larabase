@@ -19,18 +19,20 @@
                                 <span id="username-{{ $user->id }}">{{ $user->name }}</span>
                             </td>
                             <td>{{ $user->email }}</td>
-                            <td>Last con</td>
-                            <td class="text-right">        
-                                <span data-toggle="tooltip" data-placement="top" title="@if($user->isAdmin) Retrograder utilisateur @else Promouvoir administrateur @endif">
-                                    <button class="btn btn-sm @if(!$user->isAdmin) btn-outline-info @else btn-info @endif user-manage-btn" id="promoteUser-{{ $user->id }}" data-toggle="modal" data-target="#promoteUser">
-                                        <i class="fas fa-crown"></i>
-                                    </button>
-                                </span>
-                                <span data-toggle="tooltip" data-placement="top" title="Supprimer l'utilisateur">
-                                    <button type="button" class="btn btn-sm btn-danger delete-user user-manage-btn" id="removeUser-{{ $user->id }}" data-toggle="modal" data-target="#removeUser">
-                                        <i class="fas fa-trash"></i>
-                                    </button>
-                                </span>
+                            <td>{{ $user->connected }}</td>
+                            <td class="text-right">
+                                @if(Auth::user()->id != $user->id)        
+                                    <span data-toggle="tooltip" data-placement="top" title="@if($user->isAdmin) Retrograder utilisateur @else Promouvoir administrateur @endif">
+                                        <button class="btn btn-sm @if(!$user->isAdmin) btn-outline-info @else btn-info @endif user-manage-btn" id="promoteUser-{{ $user->id }}" data-toggle="modal" data-target="#promoteUser">
+                                            <i class="fas fa-crown"></i>
+                                        </button>
+                                    </span>
+                                    <span data-toggle="tooltip" data-placement="top" title="Supprimer l'utilisateur">
+                                        <button type="button" class="btn btn-sm btn-danger delete-user user-manage-btn" id="removeUser-{{ $user->id }}" data-toggle="modal" data-target="#removeUser">
+                                            <i class="fas fa-trash"></i>
+                                        </button>
+                                    </span>
+                                @endif
                             </td>
                         </tr>
                     @endforeach

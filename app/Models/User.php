@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use DateTime;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -47,6 +48,11 @@ class User extends Authenticatable
 
     public function getIsAdminAttribute() {
         return $this->attributes['role'] == env('ROLE_ADMIN', 3);
+    }
+
+    public function getConnectedAttribute() {
+        $date = new DateTime($this->attributes['connected_at']);
+        return $date->format('d/m/Y à H:i:s');
     }
 
     public function getExampleAttribute() {

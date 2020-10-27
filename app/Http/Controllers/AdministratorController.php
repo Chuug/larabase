@@ -45,6 +45,21 @@ class AdministratorController extends Controller
 
     public function promoteUser($id = null)
     {
-        dd($id);
+        if($id != Auth::user()->id) {
+            if($id == null) {
+                return redirect()->back();
+            } else {
+                $user = User::findOrFail($id);
+                
+                // Handle new role --> Start
+                $user->role = ($user->role === 1) ? 3 : 1;
+                // --> End
+                
+                $user->save();
+                return redirect()->back()->with('success',($user->role === 1) ? "L'utilisateur " . $user->name . " a bien été rétrogradé" : "L'utilisateur " . $user->name . " est maintenant administrateur");
+            }
+        } else {
+            return redirect()->back()->with('error',"Vous ne pouvez pas vous rétrograder vous-même");
+        }
     }
 }

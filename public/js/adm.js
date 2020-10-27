@@ -36,6 +36,12 @@ btn.forEach(function(btn){
         let action = form.getAttribute('action');
         checkUser = document.getElementById(modalName + 'Check');
 
+        // Change promote/demote strings --> Start
+        if(modalName == 'promoteUser') {
+            
+        }
+        // --> End
+
         form.setAttribute('action', action + '/' + id);
 
         document.querySelectorAll('.usernameModal').forEach(function(span){
