@@ -15,7 +15,7 @@
   <body class="bg-light">
     @include('elements.navbar')
     @include('elements.sidebar')
-    <main class="mt-5">
+    <main class="mt-4">
         @include('elements/toasts')
         @yield('content')
     </main>

@@ -18,8 +18,10 @@
     @include('elements.sidebar')
     @include('elements.sideadm')
     <main class="main-adm">
+        <div class="m-3">       
+          @yield('content')
+        </div>
         @include('elements/toasts')
-        @yield('content')
     </main>
     <footer class="mt-5 bg-dark text-light footer">
       <span class="pl-2">© 2020 {{ env('APP_NAME') }} - Administration</span>

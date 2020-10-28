@@ -33,6 +33,11 @@
     transition: 0.2s;
 }
 
+.side-adm a.active {
+    background-color: #bfcbd6;
+    color: #20272d !important;
+}
+
 .side-button-adm:hover {
     background-color: #d0d8e0;
 }
@@ -51,6 +56,11 @@
     font-weight: bold;
     transition: 0.2s;
     padding-left: 50px !important;
+}
+
+.topbar-logo-adm {
+    -webkit-filter: drop-shadow( 1px 1px 0px rgba(0, 0, 0, .7));
+            filter: drop-shadow( 1px 1px 0px rgba(0, 0, 0, .7));
 }
 
 @media screen and (max-width: 576px) {

@@ -1,43 +1,46 @@
 @extends('layouts/adm')
 
 @section('content')
-    <div class="row m-4">
-        <div class="table-responsive">
-            <table class="table table-light table-striped table-borderless table-hover">
-                <thead class="table-dark">
-                    <th></th>
-                    <th style="width: 20%">Pseudonyme</th>
-                    <th style="width: 30%">Email</th>
-                    <th style="width: 20%">Dernière connexion</th>
-                    <th style="width: 30%"></th>
-                </thead>
-                <tbody>
-                    @foreach ($users as $user)
-                        <tr>
-                            <td>@if ($user->isAdmin)<i class="fas fa-crown text-info"></i>@endif</td>
-                            <td>
-                                <span id="username-{{ $user->id }}">{{ $user->name }}</span>
-                            </td>
-                            <td>{{ $user->email }}</td>
-                            <td>{{ $user->connected }}</td>
-                            <td class="text-right">
-                                @if(Auth::user()->id != $user->id)        
-                                    <span data-toggle="tooltip" data-placement="top" title="@if($user->isAdmin) Retrograder utilisateur @else Promouvoir administrateur @endif">
-                                        <button class="btn btn-sm @if(!$user->isAdmin) btn-outline-info @else btn-info @endif user-manage-btn" id="promoteUser-{{ $user->id }}" data-toggle="modal" data-target="#promoteUser">
-                                            <i class="fas fa-crown"></i>
-                                        </button>
-                                    </span>
-                                    <span data-toggle="tooltip" data-placement="top" title="Supprimer l'utilisateur">
-                                        <button type="button" class="btn btn-sm btn-danger delete-user user-manage-btn" id="removeUser-{{ $user->id }}" data-toggle="modal" data-target="#removeUser">
-                                            <i class="fas fa-trash"></i>
-                                        </button>
-                                    </span>
-                                @endif
-                            </td>
-                        </tr>
-                    @endforeach
-                </tbody>
-            </table>
+    <h1 class="h2 text-dark font-weight-light m-2 mb-4">Gestion des utilisateurs</h1>
+    <div class="container">
+        <div class="row">
+            <div class="table-responsive">
+                <table class="table table-light table-striped table-borderless table-hover" style="min-width: 600px">
+                    <thead class="table-dark">
+                        <th></th>
+                        <th style="width: 20%">Pseudonyme</th>
+                        <th style="width: 30%">Email</th>
+                        <th style="width: 30%">Dernière connexion</th>
+                        <th style="width: 20%"></th>
+                    </thead>
+                    <tbody>
+                        @foreach ($users as $user)
+                            <tr style="height: 47px" class="align-middle">
+                                <td>@if ($user->isAdmin)<i class="fas fa-crown text-info"></i>@endif</td>
+                                <td>
+                                    <span id="username-{{ $user->id }}">{{ $user->name }}</span>
+                                </td>
+                                <td>{{ $user->email }}</td>
+                                <td>{{ $user->connected }}</td>
+                                <td class="text-right">
+                                    @if(Auth::user()->id != $user->id)        
+                                        <span data-toggle="tooltip" data-placement="top" title="@if($user->isAdmin) Retrograder utilisateur @else Promouvoir administrateur @endif">
+                                            <button class="btn btn-sm @if(!$user->isAdmin) btn-outline-info @else btn-info @endif user-manage-btn" id="promoteUser-{{ $user->id }}" data-toggle="modal" data-target="#promoteUser">
+                                                <i class="fas fa-crown"></i>
+                                            </button>
+                                        </span>
+                                        <span data-toggle="tooltip" data-placement="top" title="Supprimer l'utilisateur">
+                                            <button type="button" class="btn btn-sm btn-danger delete-user user-manage-btn" id="removeUser-{{ $user->id }}" data-toggle="modal" data-target="#removeUser">
+                                                <i class="fas fa-trash"></i>
+                                            </button>
+                                        </span>
+                                    @endif
+                                </td>
+                            </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
 
@@ -74,7 +77,7 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title">Promouvoir l'utilisateur <span class="usernameModal font-weight-bold"></span>?</h5>
+                    <h5 class="modal-title"><span class="promoteAction">Promouvoir</span> l'utilisateur <span class="usernameModal font-weight-bold"></span>?</h5>
                     <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <form action="{{ route('administrator.users.promote') }}" method="POST" id="promoteUserForm">
@@ -89,7 +92,7 @@
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
-                        <button type="submit" id="confirmButton-promoteUser" class="btn btn-info">Promouvoir <span class="usernameModal font-weight-bold"></span></a>  
+                        <button type="submit" id="confirmButton-promoteUser" class="btn btn-info"><span class="promoteAction">Promouvoir</span> <span class="usernameModal font-weight-bold"></span></a>  
                     </div>
                 </form>
             </div>

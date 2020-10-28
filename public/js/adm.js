@@ -38,7 +38,10 @@ btn.forEach(function(btn){
 
         // Change promote/demote strings --> Start
         if(modalName == 'promoteUser') {
-            
+            let isAdmin = btn.classList.contains('btn-info');       
+            document.querySelectorAll('.promoteAction').forEach(function(span){
+                span.innerHTML = (isAdmin) ? "Rétrograder" : "Promouvoir";
+            });
         }
         // --> End
 

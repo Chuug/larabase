@@ -1,7 +1,7 @@
 <header class="topbar bg-adm"> 
     <div class="topbar-left">      
         <a href="{{ route('administrator.index') }}" class="navbar-brand text-light mb-0 h1">
-            <img src="{{ asset('img/logo.svg') }}" class="ml-3 pr-1 topbar-logo" alt="Logo">
+            <img src="{{ asset('img/logo.svg') }}" class="ml-3 pr-1 topbar-logo topbar-logo-adm" alt="Logo">
             <span class="pr-1">Administration</span>
         </a>
         <nav id="navigation">

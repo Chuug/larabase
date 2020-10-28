@@ -1,7 +1,9 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container mt-5">
+
+<div class="container">
+    <h1 class="h2 text-dark font-weight-light mb-5">Paramètres utilisateur</h1>
     <div class="row">
         <div class="col-sm-12 col-md-4">
             <h5>Information du profil</h5>
