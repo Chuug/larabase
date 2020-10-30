@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\BlogController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\AdministratorController;
@@ -36,3 +37,12 @@ Route::middleware('can:administration')->group(function(){
     Route::delete('/adm/delete-user/{id?}', [AdministratorController::class, 'deleteUser'])->name('administrator.users.delete');
     Route::patch('/adm/promote-user/{id?}', [AdministratorController::class, 'promoteUser'])->name('administrator.users.promote');
 });
+
+/* ---------------------------------- Blog ---------------------------------- */
+
+Route::get('/blog/create', [BlogController::class, 'create'])->name('blog.create');
+Route::post('/blog/store', [BlogController::class, 'store'])->name('blog.store');
+Route::get('/blog/{id}', [BlogController::class, 'show'])->name('blog.show');
+Route::get('/blog/edit/{id}', [BlogController::class, 'edit'])->name('blog.edit');
+Route::patch('/blog/update/{id}', [BlogController::class, 'update'])->name('blog.update');
+Route::delete('/blog/delete/{id}', [BlogController::class, 'destroy'])->name('blog.destroy');

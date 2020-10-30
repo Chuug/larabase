@@ -19,7 +19,7 @@
         @else
             <nav class="nav-connected">
                 <button class="toggle-sidebar">
-                    <img src="storage/users/avatar/{{ Auth::user()->id }}.png" class="rounded-circle nav-avatar avatar-sized mx-auto" id="side-user" alt="avatar">   
+                    <img src="/storage/users/avatar/{{ Auth::user()->id }}.png" class="rounded-circle nav-avatar avatar-sized mx-auto" id="side-user" alt="avatar">   
                 </button>
             </nav>
         @endif  

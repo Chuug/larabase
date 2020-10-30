@@ -39,7 +39,38 @@ footer {
     height: 35px;
 }
 
-/* ----------------------------- Navigation ----------------------------- */
+/* ------------------------------- Page title ------------------------------- */
+
+.page-title {
+    color: #343a40;
+    font-weight: 300;
+    margin-bottom: 1rem;
+    font-size: 2rem;
+}
+
+/* ------------------------------- Scroll Bar ------------------------------- */
+
+/* width */
+::-webkit-scrollbar {
+    width: 10px;
+  }
+  
+  /* Track */
+  ::-webkit-scrollbar-track {
+    background: #f1f1f1; 
+  }
+   
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: #505861; 
+  }
+  
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: #343a40; 
+  }
+
+/* ------------------------------- Navigation ------------------------------- */
 
 #navigation {
     display: inline-block;
@@ -178,11 +209,12 @@ footer {
     height: 100%; /* 100% Full-height */
     width: 0; /* 0 width - change this with JavaScript */
     position: fixed; /* Stay in place */
-    z-index: 1; /* Stay on top */
+    z-index: 1000; /* Stay on top */
     top: 0; /* Stay at the top */
-    right: 0;
+    right: -225px;
     overflow-x: hidden; /* Disable horizontal scroll */
     transition: 0.5s; /* 0.5 second transition effect to slide in the sidenav */
+    width: 225px;
   }
 
 .side-disconnect a{

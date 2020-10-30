@@ -2,7 +2,7 @@
 
 @section('content')
     <h1 class="h2 text-dark font-weight-light m-2 mb-4">Gestion des utilisateurs</h1>
-    <div class="container">
+    <div class="container-fluid">
         <div class="row">
             <div class="table-responsive">
                 <table class="table table-light table-striped table-borderless table-hover" style="min-width: 600px">

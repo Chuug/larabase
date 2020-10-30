@@ -51,7 +51,7 @@ let sideMenuWidth = 225;
 let sideUser = document.getElementById("side-user");
 let sideOpened = false;
 sideUser.addEventListener('click',function(){
-    document.getElementById("mySidenav").style.width = sideMenuWidth + "px";
+    document.getElementById("mySidenav").style.right = "0px";
     navigationIcon.style.marginRight = (sideMenuWidth+15) + "px";
     setTimeout(function(){
         sideOpened = true;
@@ -61,7 +61,7 @@ sideUser.addEventListener('click',function(){
 /* Set the width of the side navigation to 0 */
 document.addEventListener('click', function(){
     if(sideOpened){
-        document.getElementById("mySidenav").style.width = "0";
+        document.getElementById("mySidenav").style.right = "-" + sideMenuWidth + "px";
         navigationIcon.style.marginRight = "80px";
         sideOpened = false;
     }

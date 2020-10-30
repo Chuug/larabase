@@ -3,6 +3,8 @@
 namespace App\Models;
 
 use DateTime;
+use App\Models\Article;
+use App\Http\Helpers\Helpers;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -11,6 +13,11 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 class User extends Authenticatable
 {
     use HasFactory, Notifiable;
+
+    public function article()
+    {
+        $this->hasMany(Article::class);
+    }
 
     /**
      * The attributes that are mass assignable.
@@ -50,9 +57,12 @@ class User extends Authenticatable
         return $this->attributes['role'] == env('ROLE_ADMIN', 3);
     }
 
+    public function getIsBloggerAttribute() {
+        return $this->attributes['role'] >= 2;
+    }
+
     public function getConnectedAttribute() {
-        $date = new DateTime($this->attributes['connected_at']);
-        return $date->format('d/m/Y à H:i:s');
+        return Helpers::formatDate($this->attributes['connected_at']);
     }
 
     public function getExampleAttribute() {
