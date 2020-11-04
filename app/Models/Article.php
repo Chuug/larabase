@@ -20,4 +20,5 @@ class Article extends Model
     {
         return Helpers::formatDate($this->attributes['created_at']);
     }
+
 }

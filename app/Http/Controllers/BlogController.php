@@ -7,6 +7,7 @@ use App\Models\Article;
 use Illuminate\Http\Request;
 use App\Http\Helpers\Helpers;
 use Illuminate\Routing\Route;
+use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 
@@ -15,8 +16,21 @@ class BlogController extends Controller
 {
     public function __construct(Route $route)
     {
-        if(Helpers::getShortAction($route) != 'show'){
+        if(Helpers::getShortAction($route) != 'show') {
             $this->middleware('auth');
+        }
+    }
+
+    public function index() 
+    {
+        if(Auth::user()->can('create', Article::class)) {
+            $articles = DB::table('articles')->select(['id','title','updated_at'])->where('user_id', Auth::user()->id)->orderBy('updated_at','DESC')->get();
+            return view('blog.index', [
+                'pageTitle' => 'Mes articles',
+                'articles' => $articles
+            ]);
+        } else {
+            abort(403);
         }
     }
 
@@ -28,9 +42,13 @@ class BlogController extends Controller
     public function create()
     {
         $this->authorize('create', Article::class);
-        return view('blog.create', [
-            'pageTitle' => "Ajout d'un article"
-        ]);
+        if(Auth::user()->can('created', Article::class)) {
+            return view('blog.create', [
+                'pageTitle' => "Ajout d'un article"
+            ]);
+        } else {
+            abort(403);
+        }
     }
 
     /**
@@ -41,13 +59,16 @@ class BlogController extends Controller
      */
     public function store(Request $request)
     {
-        $this->authorize('create', Article::class);
-        $article = new Article();
-        $article->title = $request->title;
-        $article->article = $request->article;
-        $article->user_id = Auth::user()->id;
-        $article->save();
-        return redirect()->route('blog.show', ['id' => $article->id]);
+        if(Auth::user()->can('create',Article::class)) {
+            $article = new Article();
+            $article->title = $request->title;
+            $article->article = $request->article;
+            $article->user_id = Auth::user()->id;
+            $article->save();
+            return redirect()->route('blog.show', ['id' => $article->id]);
+        } else {
+            abort(403);
+        }
     }
 
     /**
@@ -117,8 +138,11 @@ class BlogController extends Controller
     {
         $article = Article::findOrFail($id);
         if(Auth::user()->can('destroy', $article)) {
-            if($article->delete())
-                return redirect()->back()->with('success',"L'article a été supprimé avec succès !");
+            if($article->delete()) {
+                return redirect()->route("home")->with('success',"L'article a été supprimé avec succès !");
+            }              
+        } else {
+            abort(403);
         }
     }
 }

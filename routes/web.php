@@ -40,6 +40,7 @@ Route::middleware('can:administration')->group(function(){
 
 /* ---------------------------------- Blog ---------------------------------- */
 
+Route::get('/blog', [BlogController::class, 'index'])->name('blog.index');
 Route::get('/blog/create', [BlogController::class, 'create'])->name('blog.create');
 Route::post('/blog/store', [BlogController::class, 'store'])->name('blog.store');
 Route::get('/blog/{id}', [BlogController::class, 'show'])->name('blog.show');
