@@ -23,8 +23,9 @@ class BlogController extends Controller
 
     public function index() 
     {
-        if(Auth::user()->can('create', Article::class)) {
+        if(Auth::user()->can('index', Article::class)) {
             $articles = DB::table('articles')->select(['id','title','updated_at'])->where('user_id', Auth::user()->id)->orderBy('updated_at','DESC')->get();
+
             return view('blog.index', [
                 'pageTitle' => 'Mes articles',
                 'articles' => $articles
@@ -42,7 +43,7 @@ class BlogController extends Controller
     public function create()
     {
         $this->authorize('create', Article::class);
-        if(Auth::user()->can('created', Article::class)) {
+        if(Auth::user()->can('create', Article::class)) {
             return view('blog.create', [
                 'pageTitle' => "Ajout d'un article"
             ]);
@@ -59,7 +60,7 @@ class BlogController extends Controller
      */
     public function store(Request $request)
     {
-        if(Auth::user()->can('create',Article::class)) {
+        if(Auth::user()->can('store',Article::class)) {
             $article = new Article();
             $article->title = $request->title;
             $article->article = $request->article;
@@ -116,7 +117,7 @@ class BlogController extends Controller
     public function update(Request $request, $id)
     {
         $article = Article::findOrFail($id);
-        if(Auth::user()->can('edit',$article)) {
+        if(Auth::user()->can('update',$article)) {
             $article->title = $request->title;
             $article->article = $request->article;
             if($article->save()) {
@@ -139,7 +140,7 @@ class BlogController extends Controller
         $article = Article::findOrFail($id);
         if(Auth::user()->can('destroy', $article)) {
             if($article->delete()) {
-                return redirect()->route("home")->with('success',"L'article a été supprimé avec succès !");
+                return redirect()->route("blog.index")->with('success',"L'article a été supprimé avec succès !");
             }              
         } else {
             abort(403);

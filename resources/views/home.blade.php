@@ -1,7 +1,9 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container bg-light">
-    <h3>Content</h3>
+<div class="bg-light">
+    @foreach ($articles as $article)
+        @include('elements.blog.article')
+    @endforeach
 </div>
 @endsection
