@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@include('elements.plugins.trumbowyg')
+@include('elements.plugins.tinymce')
 
 @section('content')
     <div class="container-fluid col-11 col-sm-10 col-md-8">
@@ -20,7 +20,7 @@
                         </div>
                         
                     </div>                  
-                    <textarea name="article" class="form-control" rows="10" id="trumbowyg" placeholder="Contenu de l'article">
+                    <textarea name="article" class="form-control" rows="10" id="tinymce" placeholder="Contenu de l'article">
                         {{ $article->article }}
                     </textarea>
                 </form>

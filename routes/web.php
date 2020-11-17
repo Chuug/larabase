@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\CommentController;
 use App\Http\Controllers\AdministratorController;
 
 /*
@@ -47,3 +48,7 @@ Route::get('/blog/{id}', [BlogController::class, 'show'])->name('blog.show');
 Route::get('/blog/edit/{id}', [BlogController::class, 'edit'])->name('blog.edit');
 Route::patch('/blog/update/{id}', [BlogController::class, 'update'])->name('blog.update');
 Route::delete('/blog/delete/{id}', [BlogController::class, 'destroy'])->name('blog.destroy');
+
+/* --------------------------------- Comment -------------------------------- */
+
+Route::post('/comment/store/{articleId}', [CommentController::class, 'store'])->name('comment.store');

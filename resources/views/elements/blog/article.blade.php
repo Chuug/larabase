@@ -13,11 +13,12 @@
             {!! $article->article !!}
         </div>
     </div>
-    @can('edit', $article)
-        <div class="row text-right">
-            <div class="col pr-0 mt-2">
+    <div class="row text-right">
+        <div class="col pr-0 mt-2">
+            <a href="{{ route('blog.show',$article->id) }}" class="text-muted mr-2 text-muted fst-italic"><u>0 commentaires</u></a>
+            @can('edit', $article)
                 <a href="{{ route('blog.edit', $article->id) }}" class="btn btn-sm btn-dark"><i class="fas fa-sm fa-edit mr-1"></i> Editer</a>
-            </div>
-        </div>       
-    @endcan
+            @endcan
+        </div>
+    </div>       
 </div>
