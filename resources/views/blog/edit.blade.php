@@ -4,8 +4,11 @@
 
 @section('content')
     <div class="container-fluid col-11 col-sm-10 col-md-8">
-        <h1 class="page-title">Modifier un article</h1>
-        <div class="row">
+        <a href="{{ route('blog.index') }}" class="btn btn-outline-dark">
+            <i class="fas fa-chevron-left"></i>
+        </a>
+        <span class="page-title">Modifier un article</span>
+        <div class="row mt-2">
             <div class="col shadow-sm bg-white p-3">
                 <form action="{{ route('blog.update', $article->id) }}" method="POST">
                     @csrf
@@ -20,7 +23,7 @@
                         </div>
                         
                     </div>                  
-                    <textarea name="article" class="form-control" rows="10" id="tinymce" placeholder="Contenu de l'article">
+                    <textarea name="article" class="form-control" rows="20" id="tinymce" placeholder="Contenu de l'article">
                         {{ $article->article }}
                     </textarea>
                 </form>

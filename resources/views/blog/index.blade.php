@@ -20,6 +20,7 @@
                     <thead>
                         <tr>
                             <th width="60%">Titre</th>
+                            <th width="20%">Commentaires</th>
                             <th width="15%">Date</th>
                             <th></th>
                         </tr>
@@ -28,6 +29,7 @@
                         @foreach ($articles as $article)
                             <tr class="align-middle">
                                 <td><a href="{{ route('blog.show', $article->id) }}" class="text-dark">{{ $article->title }}</a></td>
+                                <td>{{ count($article->comment) }}</td>
                                 <td>{{ $Helpers->formatDate($article->updated_at) }}</td>
                                 <td class="text-right"><a href="{{ route('blog.edit', $article->id) }}" class="btn btn-sm btn-dark" data-toggle="tooltip" data-placement="left" title="Editer"><i class="fas fa-edit fa-sm"></i></a></td>
                             </tr>

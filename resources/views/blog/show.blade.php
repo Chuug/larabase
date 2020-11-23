@@ -11,7 +11,7 @@
                 <div class="col-12">
                     <button class="btn btn-block btn-dark" id="postComment">Poster un commentaire</button>
                 </div>
-                <form action="{{ route('comment.store', ['articleId' => 3]) }}" method="POST" class="mt-3 collapse" id="commentForm">
+                <form action="{{ route('comment.store', ['articleId' => $article->id]) }}" method="POST" class="mt-3 collapse" id="commentForm">
                     @csrf
                     <textarea name="comment" class="form-control" id="tinymce" rows="3"></textarea>
                     <div class="text-right mt-2">
@@ -22,11 +22,24 @@
         </div>
         @foreach ($article->comment as $comment)
             <div class="row mb-4">
-                <div class="col-2">
-                    Hello
+                <div class="col-2 p-2">
+                    <div class="row">
+                        <div class="col-3">
+                            <img src="/storage/users/avatar/{{ $comment->user->id }}.png" alt="Avatar de {{ $comment->user->name }}" class="avatar-sized rounded-circle shadow-sm">
+                        </div>
+                        <div class="col">
+                            <p class="fw-bold m-0 ml-2">{{ $comment->user->name }}</p>
+                            <p class="m-0"></p>
+                        </div>  
+                    </div>
                 </div>
-                <div class="col-10 shadow-sm bg-white p-3 rounded-sm">
-                    {{ $comment->comment }}
+                <div class="col-10 shadow-sm bg-white p-3 rounded-sm pb-0">
+                    <div class="row p-3">
+                        {{ $comment->comment }}
+                    </div>
+                    <div class="row text-right">
+                        <span class="small">{{ $comment->created }}</span>
+                    </div>
                 </div>
             </div>            
         @endforeach

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use App\Models\Article;
+use App\Models\Comment;
 use Illuminate\Http\Request;
 use App\Http\Helpers\Helpers;
 use Illuminate\Routing\Route;
@@ -24,8 +25,9 @@ class BlogController extends Controller
     public function index() 
     {
         if(Auth::user()->can('index', Article::class)) {
-            $articles = DB::table('articles')->select(['id','title','updated_at'])->where('user_id', Auth::user()->id)->orderBy('updated_at','DESC')->get();
-
+            // Query Builder without Comments
+            // $articles = DB::table('articles')->select(['id','title','updated_at'])->where('user_id', Auth::user()->id)->orderBy('updated_at','DESC')->get();
+            $articles = Article::ofUser(Auth::user()->id)->get();
             return view('blog.index', [
                 'pageTitle' => 'Mes articles',
                 'articles' => $articles
@@ -80,7 +82,19 @@ class BlogController extends Controller
      */
     public function show($id)
     {
+        // SubQueries Example
+        // $article = Article::with(
+        //     ['comment' => function($q){
+        //         // Use normal query
+        //         $q->orderBy('created_at','ASC');
+        //         // Use dynamic scope
+        //         // $q->ofOrder('DESC');
+        //     }]
+        // )->findOrFail($id);
+
+        // Use Global (on model)
         $article = Article::findOrFail($id);
+
         return view('blog.show', [
             'pageTitle' => $article->title,
             'article' => $article

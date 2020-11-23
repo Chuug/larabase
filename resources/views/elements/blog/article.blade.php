@@ -15,7 +15,7 @@
     </div>
     <div class="row text-right">
         <div class="col pr-0 mt-2">
-            <a href="{{ route('blog.show',$article->id) }}" class="text-muted mr-2 text-muted fst-italic"><u>0 commentaires</u></a>
+        <a href="{{ route('blog.show',$article->id) }}" class="text-muted mr-2 text-muted fst-italic"><u>{{ count($article->comment) }} commentaire{{ (count($article->comment) > 1)?'s':'' }}</u></a>
             @can('edit', $article)
                 <a href="{{ route('blog.edit', $article->id) }}" class="btn btn-sm btn-dark"><i class="fas fa-sm fa-edit mr-1"></i> Editer</a>
             @endcan
