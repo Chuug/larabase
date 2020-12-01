@@ -47,14 +47,14 @@ class Install extends Command
         $path = base_path('.env');
 
         if (file_exists($path)) {
-            file_put_contents($path, str_replace(
+            if(file_put_contents($path, str_replace(
                 'DB_DATABASE='. env('DB_DATABASE'), 'DB_DATABASE='.$dbName, file_get_contents($path)
-            ));
+            ))){
+                Artisan::call('migrate');
+                Artisan::call('storage:link');
+                Storage::makeDirectory('/public/users/avatar');
+                Artisan::call('key:generate');
+            }
         }
- 
-        Artisan::call('migrate');
-        Artisan::call('storage:link');
-        Storage::makeDirectory('/public/users/avatar');
-        Artisan::call('key:generate');
     }
 }
