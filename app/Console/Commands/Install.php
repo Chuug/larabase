@@ -3,7 +3,6 @@
 namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Storage;
 
@@ -40,21 +39,9 @@ class Install extends Command
      */
     public function handle()
     {
-        $dbName = $this->ask('Nom de la base de donnée ?');
-        $conn = DB::connection('install');
-        $conn->statement('CREATE DATABASE IF NOT EXISTS ' . $dbName . ' CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci');
-
-        $path = base_path('.env');
-
-        if (file_exists($path)) {
-            if(file_put_contents($path, str_replace(
-                'DB_DATABASE='. env('DB_DATABASE'), 'DB_DATABASE='.$dbName, file_get_contents($path)
-            ))){
-                Artisan::call('migrate');
-                Artisan::call('storage:link');
-                Storage::makeDirectory('/public/users/avatar');
-                Artisan::call('key:generate');
-            }
-        }
+        Artisan::call('migrate');
+        Artisan::call('storage:link');
+        Storage::makeDirectory('/public/users/avatar');
+        Artisan::call('key:generate');
     }
 }
