@@ -38,16 +38,17 @@ class CreateDatabase extends Command
      */
     public function handle()
     {
-        $dbName = $this->ask('Nom de la base de donnée ?');
-        $conn = DB::connection('install');
-        $conn->statement('CREATE DATABASE IF NOT EXISTS ' . $dbName . ' CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci');
-
-        $path = base_path('.env');
-
-        if (file_exists($path)) {
-            file_put_contents($path, str_replace(
-                'DB_DATABASE='. env('DB_DATABASE'), 'DB_DATABASE='.$dbName, file_get_contents($path)
-            ));
+        if(rename('.env.example','.env')) {
+            $dbName = $this->ask('Nom de la base de donnée ?');
+            $conn = DB::connection('install');
+            $conn->statement('CREATE DATABASE IF NOT EXISTS ' . $dbName . ' CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci');
+            $path = base_path('.env');
+    
+            if (file_exists($path)) {
+                file_put_contents($path, str_replace(
+                    'DB_DATABASE='. env('DB_DATABASE'), 'DB_DATABASE='.$dbName, file_get_contents($path)
+                ));
+            }
         }
     }
 }
