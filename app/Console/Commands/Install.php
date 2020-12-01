@@ -3,6 +3,9 @@
 namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Artisan;
+use Illuminate\Support\Facades\Storage;
 
 class Install extends Command
 {
@@ -48,10 +51,10 @@ class Install extends Command
                 'DB_DATABASE='. env('DB_DATABASE'), 'DB_DATABASE='.$dbName, file_get_contents($path)
             ));
         }
-
-        Artisan::call('key:generate');
+ 
         Artisan::call('migrate');
         Artisan::call('storage:link');
         Storage::makeDirectory('/public/users/avatar');
+        Artisan::call('key:generate');
     }
 }
