@@ -1,6 +1,6 @@
 <header class="topbar bg-dark"> 
     <div class="topbar-left">      
-        <a href="{{ route('home') }}" class="navbar-brand text-light mb-0 h1">
+        <a href="{{ route('home') }}" class="navbar-brand text-light mb-0 ms-3 h1">
             <img src="{{ asset('img/logo.svg') }}" class="ml-3 pr-1 topbar-logo" alt="Logo">
             <span class="pr-1">{{ env('APP_NAME') }}</span>
         </a>

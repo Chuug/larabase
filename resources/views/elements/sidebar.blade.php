@@ -2,7 +2,7 @@
   <div id="mySidenav" class="sidenav bg-dark">
     <div class="text-center">
         <img src="/storage/users/avatar/{{ Auth::user()->id }}.png" class="rounded-circle avatar-side avatar-shadow mt-4 mb-1" id="side-user" alt="avatar">   
-        <h6 class="text-light">@if(Auth::user()->isAdmin)<i class="fas fa-crown text-info mr-2"></i>@endif{{ Auth::user()->name }}</h6>
+        <h6 class="text-light">@if(Auth::user()->isAdmin)<i class="fas fa-crown text-info mx-2"></i>@endif{{ Auth::user()->name }}</h6>
     </div>
     <div class="side-menu mt-3">
       @if (Auth::user()->isBlogger)

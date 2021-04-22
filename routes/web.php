@@ -33,10 +33,11 @@ Route::patch('/user/update/avatar', [UserController::class, 'updateAvatar'])->na
 /* ------------------------------ Administrator ----------------------------- */
 
 Route::middleware('can:administration')->group(function(){
-    Route::get('/adm', [AdministratorController::class, 'index'])->name('administrator.index');
-    Route::get('/adm/manage-users', [AdministratorController::class, 'manageUsers'])->name('administrator.users.manage');
-    Route::delete('/adm/delete-user/{id?}', [AdministratorController::class, 'deleteUser'])->name('administrator.users.delete');
-    Route::patch('/adm/promote-user/{id?}', [AdministratorController::class, 'promoteUser'])->name('administrator.users.promote');
+   Route::get('/adm', [AdministratorController::class, 'index'])->name('administrator.index');
+   Route::get('/adm/manage-users', [AdministratorController::class, 'manageUsers'])->name('administrator.users.manage');
+   Route::delete('/adm/delete-user/{id?}', [AdministratorController::class, 'deleteUser'])->name('administrator.users.delete');
+   Route::patch('/adm/promote-user/{id?}', [AdministratorController::class, 'promoteUser'])->name('administrator.users.promote');
+   Route::get('/adm/reminder', [AdministratorController::class, 'reminder'])->name('administrator.reminder');
 });
 
 /* ---------------------------------- Blog ---------------------------------- */
@@ -52,3 +53,4 @@ Route::delete('/blog/delete/{id}', [BlogController::class, 'destroy'])->name('bl
 /* --------------------------------- Comment -------------------------------- */
 
 Route::post('/comment/store/{articleId}', [CommentController::class, 'store'])->name('comment.store');
+Route::delete('/comment/delete/{id}', [CommentController::class, 'destroy'])->name('comment.destroy');

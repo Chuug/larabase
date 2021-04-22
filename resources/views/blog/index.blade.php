@@ -4,12 +4,12 @@
 @inject('Helpers', 'App\Http\Helpers\Helpers')
 
 @section('content')
-    <div class="container-fluid col-11 col-sm-10 col-md-8">
+    <div class="container-fluid col-11 col-sm-10 col-md-8 bg-white shadow-sm p-3">
         <div class="row">
             <div class="col">
                 <h1 class="page-title">Mes articles</h1>
             </div>
-            <div class="col text-right">
+            <div class="col text-end">
                 <a href="{{ route('blog.create') }}" class="btn btn-dark mt-2"><i class="fas fa-newspaper mr-2"></i> Ajouter un article</a>
             </div>
         </div>
@@ -31,7 +31,7 @@
                                 <td><a href="{{ route('blog.show', $article->id) }}" class="text-dark">{{ $article->title }}</a></td>
                                 <td>{{ count($article->comment) }}</td>
                                 <td>{{ $Helpers->formatDate($article->updated_at) }}</td>
-                                <td class="text-right"><a href="{{ route('blog.edit', $article->id) }}" class="btn btn-sm btn-dark" data-toggle="tooltip" data-placement="left" title="Editer"><i class="fas fa-edit fa-sm"></i></a></td>
+                                <td class="text-right"><a href="{{ route('blog.edit', $article->id) }}" class="btn btn-sm btn-dark" data-bs-toggle="tooltip" data-bs-placement="top" title="Editer"><i class="fas fa-edit fa-sm"></i></a></td>
                             </tr>
                         @endforeach
                     </tbody>
